@@ -1,6 +1,7 @@
 import conversions.ActiveIndex;
 import conversions.Calculations;
 import conversions.ConvertItems;
+import progargs.ToDiet;
 
 import java.util.Scanner;
 
@@ -61,9 +62,6 @@ public class EERCalc {
 
         ConvertItems.proceedToConvert((int)heightInInches, (int)weightInLbs);
 
-//        print("Your weight in Kilograms is: " + convertedToKilos + "kgs");
-//        print("Your height in Meters is: " + convertedToMeters + "m");
-
         print("How active are you?");
         print("(1) Sedentary");
         print("(2) Low Active");
@@ -71,47 +69,18 @@ public class EERCalc {
         print("(4) Very Active");
         int activeLevel = user.nextInt();
 
-//        int EER = 0;
-
         ActiveIndex.index(boolGender, boolAge, activeLevel);
 
-//        if(!selectedUnits){
-//            if (boolGender){
-//                //EER = 662 - (9.53 x age [y]) + PA x { (15.91 x weight [kg]) + (539.6 x height [m]) }
-//                //This is the equation for a male.
-//                EER = (int) (662 - (9.53 * age) + ActiveIndex.activeIndex * ((15.91 * ConvertItems.convertedToKilos) + (539.6 * ConvertItems.convertedToMeters)));
-//            }else{
-//                //EER = 354 - (6.91 x age [y]) + PA x { (9.36 x weight [kg]) + (726 x height [m]) }
-//                //This is the equation for a female.
-//                EER = (int) (354 - (9.91 * age) + ActiveIndex.activeIndex * ((9.36 * ConvertItems.convertedToKilos) + (726 * ConvertItems.convertedToMeters)));
-//            }
-//        }else{
-//            if(boolGender){
-//                EER = (int) (662 - (9.53 * age) + ActiveIndex.activeIndex * ((15.91 * weightInKilos) + (539.6 * heightInMeters)));
-//            }else{
-//                EER = (int) (354 - (9.91 * age) + ActiveIndex.activeIndex * ((9.36 * weightInKilos) + (726 * heightInMeters)));
-//
-//            }
-//        }
+        Calculations.runEER(age, selectedUnits, boolGender, weightInKilos, heightInMeters);
 
-        Calculations.runEERImperial(age, selectedUnits, boolGender, weightInKilos, heightInMeters);
+        ToDiet.proceedDiet(toDiet);
 
-        int updateEER;
+        int carbLimit = ((ToDiet.updateEER / 2) / 4);
+        int fatLimit = (int) ((ToDiet.updateEER * .3F) / 9);
+        int proteinLimit = (int) ((ToDiet.updateEER * .2F) / 4);
 
-        if (toDiet == 2){
-            updateEER = Calculations.EER - 500;
-        }else if (toDiet == 1){
-            updateEER = Calculations.EER + 500;
-        }else{
-            updateEER = Calculations.EER;
-        }
-
-        int carbLimit = ((updateEER / 2) / 4);
-        int fatLimit = (int) ((updateEER * .3F) / 9);
-        int proteinLimit = (int) ((updateEER * .2F) / 4);
-
-        print("According to what you provided, your EER is: " + updateEER + "kcal");
-        print("Meaning, you should be consuming at least " + updateEER + " calories a day to sustain your weight.");
+        print("According to what you provided, your EER is: " + ToDiet.updateEER + "kcal");
+        print("Meaning, you should be consuming at least " + ToDiet.updateEER + " calories a day to sustain your weight.");
         print("You should consume " + carbLimit + "g of Carbohydrates a day.");
         print("You should consume " + fatLimit + "g of Fats a day.");
         print("You should consume " + proteinLimit + "g of Proteins a day.");

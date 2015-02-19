@@ -8,7 +8,7 @@ public class Calculations {
 
     public static int EER;
 
-    public static void runEERImperial(int age, boolean selectedUnits, boolean boolGender, float weightInKilos, float heightInMeters){
+    public static void runEER(int age, boolean selectedUnits, boolean boolGender, float weightInKilos, float heightInMeters){
 
         if(!selectedUnits){
             if (boolGender){
