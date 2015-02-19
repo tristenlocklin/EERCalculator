@@ -1,12 +1,14 @@
 package conversions;
 
+import progargs.ToDiet;
+
 /**
  * Copyright tristenlocklin -- Tristen Locklin 2015.
  * File created on 2/19/15.
  */
 public class Calculations {
 
-    public static int EER;
+    public static int EER, carbLimit, fatLimit, proteinLimit;
 
     public static void runEER(int age, boolean selectedUnits, boolean boolGender, float weightInKilos, float heightInMeters){
 
@@ -28,5 +30,12 @@ public class Calculations {
 
             }
         }
+    }
+
+    public static void calcPercent(){
+
+        Calculations.carbLimit = ((ToDiet.updateEER / 2) / 4);
+        Calculations.fatLimit = (int) ((ToDiet.updateEER * .3F) / 9);
+        Calculations.proteinLimit = (int) ((ToDiet.updateEER * .2F) / 4);
     }
 }

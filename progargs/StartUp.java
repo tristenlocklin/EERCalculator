@@ -12,7 +12,7 @@ public class StartUp {
 
     public static float weightInKilos = 0, weightInLbs = 0, heightInMeters = 0, heightInInches = 0;
     public static boolean boolGender, selectedUnits, boolAge;
-    public static int age, toDiet;
+    public static int age, toDiet, activeLevel;
 
     public static Scanner user = new Scanner(System.in);
 
@@ -55,6 +55,17 @@ public class StartUp {
         StartUp.toDiet = user.nextInt();
 
         StartUp.boolAge = (StartUp.age <= 17);
+
+    }
+
+    public static void yourActiveLevel(){
+
+        P.print("How active are you?");
+        P.print("(1) Sedentary");
+        P.print("(2) Low Active");
+        P.print("(3) Active");
+        P.print("(4) Very Active");
+        StartUp.activeLevel = user.nextInt();
 
     }
 }
