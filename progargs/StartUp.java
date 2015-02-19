@@ -11,10 +11,13 @@ import java.util.Scanner;
 public class StartUp {
 
     public static float weightInKilos = 0, weightInLbs = 0, heightInMeters = 0, heightInInches = 0;
+    public static boolean boolGender, selectedUnits, boolAge;
+    public static int age, toDiet;
+
+    public static Scanner user = new Scanner(System.in);
+
 
     public static void weightAndHeight(boolean selectedUnits){
-
-        Scanner user = new Scanner(System.in);
 
         if(!selectedUnits){
             P.print("What is your weight in lbs?");
@@ -29,6 +32,29 @@ public class StartUp {
             P.print("What is your height in meters?");
             StartUp.heightInMeters = user.nextFloat();
         }
+
+    }
+
+    public static void whoAreYou(){
+
+        P.print("Are you (M)Male or (F)Female?");
+        String gender = user.nextLine();
+        StartUp.boolGender = gender.toLowerCase().equals("m");
+
+        P.print("Would you like to use (1)SI Units or (2)Imperial Units?");
+        int units = user.nextInt();
+        StartUp.selectedUnits = (units == 1);
+    }
+
+    public static void moarInformation(){
+
+        P.print("How old are you currently?");
+        StartUp.age = user.nextInt();
+
+        P.print("Are you currently trying to (1)Gain some weight, (2)Lose some weight, or (3)Maintain your weight?");
+        StartUp.toDiet = user.nextInt();
+
+        StartUp.boolAge = (StartUp.age <= 17);
 
     }
 }

@@ -29,23 +29,11 @@ public class EERCalc {
 
         print("EER Calculator v0.2");
 
-        print("Are you (M)Male or (F)Female?");
-        String gender = user.nextLine();
-        boolean boolGender = gender.toLowerCase().equals("m");
+        StartUp.whoAreYou();
 
-        print("Would you like to use (1)SI Units or (2)Imperial Units?");
-        int units = user.nextInt();
-        boolean selectedUnits = (units == 1);
+        StartUp.weightAndHeight(StartUp.selectedUnits);
 
-        StartUp.weightAndHeight(selectedUnits);
-
-        print("How old are you currently?");
-        int age = user.nextInt();
-
-        print("Are you currently trying to (1)Gain some weight, (2)Lose some weight, or (3)Maintain your weight?");
-        int toDiet = user.nextInt();
-
-        boolean boolAge = (age <= 17);
+        StartUp.moarInformation();
 
         ConvertItems.proceedToConvert((int) StartUp.heightInInches, (int)StartUp.weightInLbs);
 
@@ -56,11 +44,11 @@ public class EERCalc {
         print("(4) Very Active");
         int activeLevel = user.nextInt();
 
-        ActiveIndex.index(boolGender, boolAge, activeLevel);
+        ActiveIndex.index(StartUp.boolGender, StartUp.boolAge, activeLevel);
 
-        Calculations.runEER(age, selectedUnits, boolGender, StartUp.weightInKilos, StartUp.heightInMeters);
+        Calculations.runEER(StartUp.age, StartUp.selectedUnits, StartUp.boolGender, StartUp.weightInKilos, StartUp.heightInMeters);
 
-        ToDiet.proceedDiet(toDiet);
+        ToDiet.proceedDiet(StartUp.toDiet);
 
         int carbLimit = ((ToDiet.updateEER / 2) / 4);
         int fatLimit = (int) ((ToDiet.updateEER * .3F) / 9);
