@@ -1,6 +1,7 @@
 import conversions.ActiveIndex;
 import conversions.Calculations;
 import conversions.ConvertItems;
+import progargs.StartUp;
 import progargs.ToDiet;
 
 import java.util.Scanner;
@@ -36,21 +37,7 @@ public class EERCalc {
         int units = user.nextInt();
         boolean selectedUnits = (units == 1);
 
-        float weightInKilos = 0, weightInLbs = 0, heightInMeters = 0, heightInInches = 0;
-
-        if(!selectedUnits){
-            print("What is your weight in lbs?");
-            weightInLbs = user.nextFloat();
-
-            print("What is your height in inches?");
-            heightInInches = user.nextFloat();
-        }else{
-            print("What is your weight in kilos");
-            weightInKilos = user.nextFloat();
-
-            print("What is your height in meters?");
-            heightInMeters = user.nextFloat();
-        }
+        StartUp.weightAndHeight(selectedUnits);
 
         print("How old are you currently?");
         int age = user.nextInt();
@@ -60,7 +47,7 @@ public class EERCalc {
 
         boolean boolAge = (age <= 17);
 
-        ConvertItems.proceedToConvert((int)heightInInches, (int)weightInLbs);
+        ConvertItems.proceedToConvert((int) StartUp.heightInInches, (int)StartUp.weightInLbs);
 
         print("How active are you?");
         print("(1) Sedentary");
@@ -71,7 +58,7 @@ public class EERCalc {
 
         ActiveIndex.index(boolGender, boolAge, activeLevel);
 
-        Calculations.runEER(age, selectedUnits, boolGender, weightInKilos, heightInMeters);
+        Calculations.runEER(age, selectedUnits, boolGender, StartUp.weightInKilos, StartUp.heightInMeters);
 
         ToDiet.proceedDiet(toDiet);
 
