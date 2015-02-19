@@ -5,8 +5,6 @@ import progargs.StartUp;
 import progargs.ToDiet;
 import progargs.WindDown;
 
-import java.util.Scanner;
-
 /**
  * Copyright tristenlocklin -- Tristen Locklin 2015.
  * File created on 2/17/15.
@@ -33,6 +31,8 @@ public class EERCalc {
         StartUp.weightAndHeight(StartUp.selectedUnits);
 
         StartUp.moarInformation();
+
+        StartUp.yourActiveLevel();
 
         ConvertItems.proceedToConvert((int) StartUp.heightInInches, (int)StartUp.weightInLbs);
 

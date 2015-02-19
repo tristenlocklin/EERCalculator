@@ -10,7 +10,6 @@ public class ToDiet {
 
     public static int updateEER;
 
-
     public static void proceedDiet(int toDiet){
 
         if (toDiet == 2){
