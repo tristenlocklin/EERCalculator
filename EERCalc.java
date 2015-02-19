@@ -1,3 +1,4 @@
+import conversions.ActiveIndex;
 import conversions.ConvertItems;
 
 import java.util.Scanner;
@@ -69,66 +70,25 @@ public class EERCalc {
         print("(4) Very Active");
         int activeLevel = user.nextInt();
 
-        float activeIndex;
         int EER = 0;
 
-        if (boolGender && boolAge /*This is if the user is a male and is under 18 years old*/){
-            if(activeLevel == 1){
-                activeIndex = 1.0F;
-            }else if(activeLevel == 2){
-                activeIndex = 1.13F;
-            }else if(activeLevel == 3){
-                activeIndex = 1.26F;
-            }else{
-                activeIndex = 1.42F;
-            }
-        }else if (!boolGender && boolAge/*This is if the user is a female and is under 18 years old*/){
-            if(activeLevel == 1){
-                activeIndex = 1.0F;
-            }else if(activeLevel == 2){
-                activeIndex = 1.16F;
-            }else if(activeLevel == 3){
-                activeIndex = 1.31F;
-            }else{
-                activeIndex = 1.56F;
-            }
-        }else if (boolGender && !boolAge/*This is if the user is a male and is 18 or over*/){
-            if(activeLevel == 1){
-                activeIndex = 1.0F;
-            }else if(activeLevel == 2){
-                activeIndex = 1.11F;
-            }else if(activeLevel == 3){
-                activeIndex = 1.25F;
-            }else{
-                activeIndex = 1.48F;
-            }
-        }else{
-            if(activeLevel == 1){
-                activeIndex = 1.0F;
-            }else if(activeLevel == 2){
-                activeIndex = 1.12F;
-            }else if(activeLevel == 3){
-                activeIndex = 1.27F;
-            }else{
-                activeIndex = 1.45F;
-            }
-        }
+        ActiveIndex.index(boolGender, boolAge, activeLevel);
 
         if(!selectedUnits){
             if (boolGender){
                 //EER = 662 - (9.53 x age [y]) + PA x { (15.91 x weight [kg]) + (539.6 x height [m]) }
                 //This is the equation for a male.
-                EER = (int) (662 - (9.53 * age) + activeIndex * ((15.91 * ConvertItems.convertedToKilos) + (539.6 * ConvertItems.convertedToMeters)));
+                EER = (int) (662 - (9.53 * age) + ActiveIndex.activeIndex * ((15.91 * ConvertItems.convertedToKilos) + (539.6 * ConvertItems.convertedToMeters)));
             }else{
                 //EER = 354 - (6.91 x age [y]) + PA x { (9.36 x weight [kg]) + (726 x height [m]) }
                 //This is the equation for a female.
-                EER = (int) (354 - (9.91 * age) + activeIndex * ((9.36 * ConvertItems.convertedToKilos) + (726 * ConvertItems.convertedToMeters)));
+                EER = (int) (354 - (9.91 * age) + ActiveIndex.activeIndex * ((9.36 * ConvertItems.convertedToKilos) + (726 * ConvertItems.convertedToMeters)));
             }
         }else{
             if(boolGender){
-                EER = (int) (662 - (9.53 * age) + activeIndex * ((15.91 * weightInKilos) + (539.6 * heightInMeters)));
+                EER = (int) (662 - (9.53 * age) + ActiveIndex.activeIndex * ((15.91 * weightInKilos) + (539.6 * heightInMeters)));
             }else{
-                EER = (int) (354 - (9.91 * age) + activeIndex * ((9.36 * weightInKilos) + (726 * heightInMeters)));
+                EER = (int) (354 - (9.91 * age) + ActiveIndex.activeIndex * ((9.36 * weightInKilos) + (726 * heightInMeters)));
 
             }
         }
