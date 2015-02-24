@@ -44,6 +44,6 @@ public class EERCalc {
 
         Calculations.calcPercent();
 
-        WindDown.endding();
+        WindDown.endding(StartUp.toDiet);
     }
 }

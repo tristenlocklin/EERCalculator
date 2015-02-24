@@ -9,10 +9,21 @@ import libs.P;
  */
 public class WindDown {
 
-    public static void endding(){
+    public static String endValue;
+
+    public static void endding(int selectDiet){
 
         P.print("According to what you provided, your EER is: " + ToDiet.updateEER + "kcal");
-        P.print("Meaning, you should be consuming at least " + ToDiet.updateEER + " calories a day to sustain your weight.");
+
+        if (selectDiet == 1){
+            WindDown.endValue = " increase your weight.";
+        }else if(selectDiet == 2){
+            WindDown.endValue = " decrease your weight.";
+        }else{
+            WindDown.endValue = " sustain your weight.";
+        }
+
+        P.print("Meaning, you should be consuming at least " + ToDiet.updateEER + " calories a day to" + WindDown.endValue);
         P.print("You should consume " + Calculations.carbLimit + "g of Carbohydrates a day.");
         P.print("You should consume " + Calculations.fatLimit + "g of Fats a day.");
         P.print("You should consume " + Calculations.proteinLimit + "g of Proteins a day.");
